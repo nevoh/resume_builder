@@ -1,0 +1,24 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+{% if educations %}
+<ul>
+{% for education in educations %}
+<li>{{education.name}} --  {{education.degree}}
+    <a href = "{% url 'update_education' education.id %}">edit</a>
+    <a href = "{% url 'delete_education' education.id %}">delete</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+ 
+    School: {{ form.name }}
+    Degree: {{ form.degree }}
+    
+    <input type="submit" value="Add Education">
+ </form>
+
+{% endblock content %}

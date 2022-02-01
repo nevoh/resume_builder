@@ -1,0 +1,15 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+<form method="POST">
+   {% csrf_token %}
+
+   Title: {{ form.title }}
+   Description: {{ form.description }}
+   Year: {{ form.year }}
+
+   <input type="submit" value="Update">
+</form>
+
+{% endblock content%}

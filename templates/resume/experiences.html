@@ -1,0 +1,39 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+{% if experiences %}
+{% for experience in experiences %}
+<ul>
+<li><h1>{{experience.title}}</h1></li>
+<li>{{experience.company}}</li>
+<li>{{experience.description}}</li>
+<li>{{experience.start_date}}</li>
+<li>{{experience.end_date}}</li>
+    <li><a href = "{% url 'update_experience' experience.id %}">edit</a>
+    <a href = "{% url 'delete_experience' experience.id %}">delete</a></li>
+
+</ul>
+{% endfor %}
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+ 
+    Title: {{ form.title }}
+    Company: {{ form.company }}
+    Description: {{ form.description }}
+    Start date: {{ form.start_date }}
+    End date: {{ form.end_date }} <button  onclick="set_end_date_present(); return false;">Present</button>
+    <input type="submit" value="Add Experience">
+ </form>
+ 
+
+ <script>
+    function set_end_date_present() {
+    document.getElementById("end_date").value = "";
+      
+    }
+    </script>
+
+{% endblock content %}

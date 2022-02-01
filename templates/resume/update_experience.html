@@ -1,0 +1,24 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+<form method="POST">
+   {% csrf_token %}
+
+   Title: {{ form.title }}
+   Company: {{ form.company }}
+   Description: {{ form.description }}
+   Start date: {{ form.start_date }}
+   End date: {{ form.end_date }} <button  onclick="set_end_date_present(); return false;">Present</button>
+
+   <input type="submit" value="Update">
+</form>
+
+
+<script>
+   function set_end_date_present() {
+   document.getElementById("end_date").value = "";
+     
+   }
+</script>
+{% endblock content%}

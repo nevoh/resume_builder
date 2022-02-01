@@ -1,0 +1,21 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+{% if skills %}
+{% for skill in skills %}
+<ul>
+<li><h1>{{skill.title}}</h1></li>
+    <li><a href = "{% url 'update_skill' skill.id %}">edit</a>
+    <a href = "{% url 'delete_skill' skill.id %}">delete</a></li>
+</ul>
+{% endfor %}
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    Title: {{ form.title }}
+    <input type="submit" value="Add Skill">
+ </form>
+ 
+{% endblock content %}

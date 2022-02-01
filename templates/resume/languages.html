@@ -1,0 +1,23 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+{% if languages %}
+{% for language in languages %}
+<ul>
+<li><h1>{{language.title}}</h1></li>
+<li>{{language.level}}</li>
+    <li><a href = "{% url 'update_language' language.id %}">edit</a>
+    <a href = "{% url 'delete_language' language.id %}">delete</a></li>
+</ul>
+{% endfor %}
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    Title: {{ form.title }}
+    Level: {{ form.level }}
+    <input type="submit" value="Add Language">
+ </form>
+ 
+{% endblock content %}

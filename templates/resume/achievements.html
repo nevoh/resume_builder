@@ -1,0 +1,28 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+{% if achievements %}
+{% for achievement in achievements %}
+<ul>
+<li><h1>{{achievement.title}}</h1></li>
+<li>{{achievement.description}}</li>
+<li>{{achievement.year}}</li>
+    <li><a href = "{% url 'update_achievement' achievement.id %}">edit</a>
+    <a href = "{% url 'delete_achievement' achievement.id %}">delete</a></li>
+</ul>
+{% endfor %}
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+ 
+    Title: {{ form.title }}
+    Description: {{ form.description }}
+    Year: {{ form.year }}
+    <input type="submit" value="Add Achievement">
+ </form>
+ 
+
+
+{% endblock content %}
